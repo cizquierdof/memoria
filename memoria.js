@@ -22,7 +22,6 @@ const memoria = new Vue({
                 './assets/pig.png',
             ],
             gameList: [],
-            tryList: [],
             tryA: 0,
             tryB: 0,
             acierto: false,
@@ -31,25 +30,30 @@ const memoria = new Vue({
         }
     },
     created() {
-        this.gameList = this.arrayShuffle(this.baseList);
-        console.log(this.gameList);
-        this.gameList.map((e, i) => {
-            this.gameList[i] = {
-                valor: e,
-                visible: true
-            }
-        })
     },
     mounted() {
-        setTimeout(this.ocultaTodo, 3000)
-        this.refreshList()
+        this.initialize()
     },
     methods: {
+        initialize() {
+            this.acierto=false;
+            this.fallos=0;
+            this.final=false;
+            this.gameList = [...this.arrayShuffle(this.baseList)];
+            this.gameList.map((e, i) => {
+                this.gameList[i] = {
+                    valor: e,
+                    visible: true
+                }
+            })
+            setTimeout(this.ocultaTodo, 3000)
+            this.refreshList()
+        },
         arrayShuffle(arr) {
             return arr.sort(() => Math.random() - 0.5)
         },
         tirada(index) {
-            if(!this.tryB){
+            if (!this.tryB) {
                 if (!this.tryA) {
                     this.tryA = index + 1;  //avoid value of 0
                     this.ver(index, true);

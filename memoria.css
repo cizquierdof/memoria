@@ -25,7 +25,7 @@
 }
 
 .resultado {
-    grid-column-start: span 3;
+    grid-column-start:3;
     
 }
 

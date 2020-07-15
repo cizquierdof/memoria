@@ -22,13 +22,14 @@
         <div  class="element" v-for="(item, i) in gameList"  @click='!item.visible?tirada(i):null'>
           <img :src="!item.visible?'':item.valor" alt="" >
         </div>
+        <div>
+          <h2>{{final?'Has ganado':'Jugando'}}</h2>     
+        </div>
         <div class="resultado">
-          <h2>Final: {{final?'Has ganado':'Jugando'}}</h2>
-          
+          <button class="btn btn-primary" @click='initialize()'>Nuevo</button>
         </div>
       </div>
     </div>
-
     <script src="./memoria.js"></script>
   </body>
 </html>
