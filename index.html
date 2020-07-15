@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Memoria</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
+      integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="memoria.css" />
+  </head>
+  <body>
+    <div id="memoria" class="container">
+      <div class="header">
+        <h1>{{msg}} {{fallos}}</h1>
+      </div>
+      <div class="canvas">
+        <div  class="element" v-for="(item, i) in gameList"  @click='!item.visible?tirada(i):null'>
+          <img :src="!item.visible?'':item.valor" alt="" >
+        </div>
+        <div class="resultado">
+          <h2>Final: {{final?'Has ganado':'Jugando'}}</h2>
+          
+        </div>
+      </div>
+    </div>
+
+    <script src="./memoria.js"></script>
+  </body>
+</html>
