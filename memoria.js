@@ -29,16 +29,21 @@ const memoria = new Vue({
             final: false
         }
     },
-    created() {
-    },
     mounted() {
         this.initialize()
+    },
+    computed: {
+        terminado() {
+            //this.gameList.map((e, i) => console.log('gameList visible', i, e.visible))
+           return this.gameList.reduce((acc, act) => act.visible && acc, true)
+        },
+
     },
     methods: {
         initialize() {
             this.acierto=false;
             this.fallos=0;
-            this.final=false;
+            this.final=true;
             this.gameList = [...this.arrayShuffle(this.baseList)];
             this.gameList.map((e, i) => {
                 this.gameList[i] = {
@@ -47,7 +52,7 @@ const memoria = new Vue({
                 }
             })
             setTimeout(this.ocultaTodo, 3000)
-            this.refreshList()
+            //this.refreshList()
         },
         arrayShuffle(arr) {
             return arr.sort(() => Math.random() - 0.5)
@@ -75,7 +80,7 @@ const memoria = new Vue({
                 this.acierto = false
             } else {
                 this.acierto = true;
-                this.terminado()
+                //this.terminado()
                 this.refreshList()
                 this.tryA = 0;
                 this.tryB = 0;
@@ -90,17 +95,9 @@ const memoria = new Vue({
             this.tryA = 0;
             this.tryB = 0;
         },
-        terminado() {
-            this.gameList.map((e, i) => console.log('gameList visible', i, e.visible))
-            this.final = this.gameList.reduce((acc, act) => {
-                return act.visible && acc
-            }, true)
-        },
         ocultaTodo() {
-            this.gameList.map(e => {
-                e.visible = false
-            }
-            )
+            this.gameList.map(e => {e.visible = false})
+            this.final=false;
         }
     }
 })

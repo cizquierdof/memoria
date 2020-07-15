@@ -23,9 +23,11 @@
 .canvas img{
     width: 100px;
 }
-
-.resultado {
-    grid-column-start:3;
+.resultado{
+    grid-area: 5/1/5/3;
+}
+.boton {
+    grid-column-start:4;
     
 }
 

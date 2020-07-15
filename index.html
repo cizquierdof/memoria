@@ -16,16 +16,17 @@
   <body>
     <div id="memoria" class="container">
       <div class="header">
-        <h1>{{msg}} {{fallos}}</h1>
+        <h1>{{msg}}</h1>
       </div>
       <div class="canvas">
         <div  class="element" v-for="(item, i) in gameList"  @click='!item.visible?tirada(i):null'>
           <img :src="!item.visible?'':item.valor" alt="" >
         </div>
-        <div>
-          <h2>{{final?'Has ganado':'Jugando'}}</h2>     
-        </div>
         <div class="resultado">
+          <h3 v-if="!final&&terminado">¡Has ganado!</h3>     
+          <h3 v-else>Fallos:  {{fallos?fallos:''}}</h3>     
+        </div>
+        <div class="boton">
           <button class="btn btn-primary" @click='initialize()'>Nuevo</button>
         </div>
       </div>
