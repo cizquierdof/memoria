@@ -49,13 +49,15 @@ const memoria = new Vue({
             return arr.sort(() => Math.random() - 0.5)
         },
         tirada(index) {
-            if (!this.tryA) {
-                this.tryA = index + 1;  //avoid value of 0
-                this.ver(index, true);
-            } else {
-                this.tryB = index + 1;  //avoid value of 0
-                this.ver(index, true);
-                this.compare(this.tryA - 1, this.tryB - 1);
+            if(!this.tryB){
+                if (!this.tryA) {
+                    this.tryA = index + 1;  //avoid value of 0
+                    this.ver(index, true);
+                } else {
+                    this.tryB = index + 1;  //avoid value of 0
+                    this.ver(index, true);
+                    this.compare(this.tryA - 1, this.tryB - 1);
+                }
             }
         },
         ver(i, visible) {
